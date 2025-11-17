@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "All Time Low",
+    "artist": "Jon B.",
+    "duration": "03:39",
+    "type": "Music Pop",
+    "poster": "All Time Low"
+  },
+  {
+    "id": 2,
+    "title": "Scars To Your Beautiful",
+    "artist": "Alessia Cara",
+    "duration": "04:28",
+    "type": "Music Pop",
+    "poster": "Scars To Your Beautiful"
+  },
+  {
+    "id": 3,
+    "title": "Hello",
+    "artist": "Adele",
+    "duration": "04:55",
+    "type": "Soul",
+    "poster": "Hello"
+  },
+  {
+    "id": 4,
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "duration": "03:20",
+    "type": "Synth Pop",
+    "poster": "Blinding Lights"
+  },
+  {
+    "id": 5,
+    "title": "Shape of You",
+    "artist": "Ed Sheeran",
+    "duration": "03:53",
+    "type": "Pop",
+    "poster": "Shape of You"
+  },
+  {
+    "id": 6,
+    "title": "Sunflower",
+    "artist": "Post Malone",
+    "duration": "02:38",
+    "type": "Hip Hop",
+    "poster": "Sunflower"
+  },
+  {
+    "id": 7,
+    "title": "Perfect",
+    "artist": "Ed Sheeran",
+    "duration": "04:23",
+    "type": "Romantic",
+    "poster": "Perfect"
+  },
+  {
+    "id": 8,
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "duration": "03:23",
+    "type": "Pop",
+    "poster": "Levitating"
+  },
+  {
+    "id": 9,
+    "title": "Stay",
+    "artist": "Justin Bieber",
+    "duration": "03:05",
+    "type": "Pop",
+    "poster": "Stay"
+  },
+  {
+    "id": 10,
+    "title": "Someone Like You",
+    "artist": "Adele",
+    "duration": "04:45",
+    "type": "Soul",
+    "poster": "Someone Like You"
+  }
+]
