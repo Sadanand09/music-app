@@ -4,8 +4,6 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  Image,
-  Text
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -14,6 +12,9 @@ import TrendingContent from "../../components/home/TrendingContent";
 import CategoriesContent from "../../components/home/CategoriesContent";
 import CollectionsContent from "../../components/home/CollectionsContent";
 import Header from "@/app/components/common/Header";
+
+import { songs, categories, collections } from "../../data/homeData";
+
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState<
@@ -27,17 +28,16 @@ export default function HomeScreen() {
     >
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scroll}>
-          
           <Header />
           <HomeTabs activeTab={activeTab} onChange={setActiveTab} />
 
           <View style={styles.content}>
-            {activeTab === "Trending" && <TrendingContent data={[]} />}
+            {activeTab === "Trending" && <TrendingContent data={songs} />}
             {activeTab === "Categories" && (
-              <CategoriesContent categories={[]} />
+              <CategoriesContent categories={categories} />
             )}
             {activeTab === "Collections" && (
-              <CollectionsContent collections={[]} />
+              <CollectionsContent collections={collections} />
             )}
           </View>
         </ScrollView>
