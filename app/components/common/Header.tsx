@@ -1,36 +1,43 @@
-import { View, Text, Image} from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
-
 
 const Header = () => {
   return (
-    <>
-      <View className="flex flex-row">
+    <View className="w-full flex justify-evenly">
+      {/* Header */}
+      <View className="flex flex-row items-center justify-between mt-6 px-5">
+        {/* Text Section */}
         <View>
-          <Text >Welcome back!</Text>
-          <Text >Hi, John Doe</Text>
+          <Text className="text-3xl text-white font-extrabold">
+            Welcome back!
+          </Text>
+          <Text className="text-white/80 mt-1 font-bold">Hi, John Doe</Text>
         </View>
 
-        <View className="flex flex-row" >
+        {/* Icons */}
+        <View className="flex flex-row justify-around ms-3">
           <Image
             source={require("../../../assets/images/Search.png")}
-            
+            className="w-24 h-24"
+            resizeMode="contain"
           />
           <Image
             source={require("../../../assets/images/Notifications.png")}
-            
+            className="w-24 h-24"
+            resizeMode="contain"
           />
         </View>
       </View>
 
-      {/* Banner */}
-      <View >
+      {/* Banner (Edge to Edge) */}
+      <View className="w-full my-5">
         <Image
           source={require("../../../assets/images/Song.png")}
-          
+          className="w-full h-auto"
+          resizeMode="cover"
         />
       </View>
-    </>
+    </View>
   );
 };
 

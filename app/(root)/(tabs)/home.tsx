@@ -24,21 +24,24 @@ export default function HomeScreen() {
   return (
     <ImageBackground
       source={require("../../../assets/images/Backgrounds.png")}
-      style={styles.container}
+      className="flex-1"
+      resizeMode="cover"
     >
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scroll}>
-          <Header />
-          <HomeTabs activeTab={activeTab} onChange={setActiveTab} />
+          <View className="px-3">
+            <Header />         
+            <HomeTabs activeTab={activeTab} onChange={setActiveTab} />
 
-          <View style={styles.content}>
-            {activeTab === "Trending" && <TrendingContent data={songs} />}
-            {activeTab === "Categories" && (
-              <CategoriesContent categories={categories} />
-            )}
-            {activeTab === "Collections" && (
-              <CollectionsContent collections={collections} />
-            )}
+            <View className="px-3">
+              {activeTab === "Trending" && <TrendingContent data={songs} />}
+              {activeTab === "Categories" && (
+                <CategoriesContent categories={categories} />
+              )}
+              {activeTab === "Collections" && (
+                <CollectionsContent collections={collections} />
+              )}
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -49,5 +52,4 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scroll: { paddingBottom: 40 },
-  content: { paddingHorizontal: 16, marginTop: 12 },
 });
