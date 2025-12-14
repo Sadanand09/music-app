@@ -1,24 +1,31 @@
 import React, { useState } from "react";
-import { View, Text, Image, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { Ionicons, Feather } from "@expo/vector-icons";
-import { posters } from "@/constants/posterImages";
-import SecondHeader from "@/app/components/common/SecondHeader";
-import { songs } from "@/app/data/songs";
 
+import { posters } from "@/constants/posterImages";
+import { songs } from "@/app/data/songs";
+import SecondHeader from "@/app/components/common/SecondHeader";
 
 export default function TrackPlayer() {
   const [isLiked, setIsLiked] = useState(false);
+
+  // ✅ ONLY id comes from route
   const { id } = useLocalSearchParams<{ id: string }>();
 
+  // ✅ Resolve song from data
+  const song = songs.find((s) => s.id === Number(id));
 
-  const { title, artist, poster, duration } = useLocalSearchParams<{
-    title: string;
-    artist: string;
-    duration: string;
-    poster: keyof typeof posters;
-  }>();
+  // Safety guard
+  if (!song) return null;
 
   return (
     <ImageBackground
@@ -27,21 +34,18 @@ export default function TrackPlayer() {
       resizeMode="cover"
     >
       <SafeAreaView className="flex-1">
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          //contentContainerStyle={styles.scroll}
-        >
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View className="px-5">
             {/* Top Bar */}
-            <View className="flex-1 pt-4">
+            <View className="pt-4">
               <SecondHeader title="Music Player" />
             </View>
 
             {/* Album Art */}
-            <View className="items-center">
+            <View className="items-center mt-6">
               <View className="bg-[#2a2a2a] p-4 rounded-[32px]">
                 <Image
-                  source={posters[poster]}
+                  source={posters[song.poster]}
                   className="w-[260px] h-[260px] rounded-2xl"
                 />
               </View>
@@ -49,9 +53,11 @@ export default function TrackPlayer() {
 
             {/* Song Info */}
             <View className="items-center mt-8">
-              <Text className="text-white text-2xl font-bold">{artist}</Text>
+              <Text className="text-white text-2xl font-bold">
+                {song.artist}
+              </Text>
               <Text className="text-white/70 text-base mt-1">
-                {title} — Alternative / Indie
+                {song.title} — {song.type}
               </Text>
             </View>
 
@@ -93,7 +99,7 @@ export default function TrackPlayer() {
             {/* Time */}
             <View className="flex flex-row justify-between mt-3">
               <Text className="text-white/70 text-sm">01:45</Text>
-              <Text className="text-white/70 text-sm">{duration}</Text>
+              <Text className="text-white/70 text-sm">{song.duration}</Text>
             </View>
 
             {/* Controls */}
@@ -109,7 +115,7 @@ export default function TrackPlayer() {
               <Ionicons name="repeat" size={24} color="white" />
             </View>
 
-            {/* Lyrics Bar */}
+            {/* Lyrics */}
             <View className="mt-10 bg-white/10 rounded-2xl py-4 items-center">
               <View className="w-16 h-1 bg-white/40 rounded-full mb-2" />
               <Text className="text-white/80 text-sm">

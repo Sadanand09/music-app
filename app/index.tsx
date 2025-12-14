@@ -6,53 +6,65 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import React, { use } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
 const SignIn = () => {
   const router = useRouter();
+
   return (
     <ImageBackground
       source={require("../assets/images/Backgrounds.png")}
-      style={{ flex: 1 }}
+      className="flex-1"
       resizeMode="cover"
     >
-      <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-          <View className="flex-1 pt-16">
-            <View className="mx-auto">
+      <SafeAreaView className="flex-1">
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View className="flex-1 justify-between pt-10 pb-10">
+            {/* Illustration Section */}
+            <View className="items-center">
               <ImageBackground
                 source={require("../assets/images/Ornaments.png")}
-                className="w-[349px] h-[436px] items-center justify-center"
+                className="w-[360px] h-[420px] items-center justify-center"
                 resizeMode="contain"
               >
                 <Image
                   source={require("../assets/images/Group 8758.png")}
-                  className="w-[374px] h-[322px] pb-7"
+                  className="w-[360px] h-[280px] mt-[-100px]"
                   resizeMode="contain"
                 />
               </ImageBackground>
             </View>
 
-            <Image
-              source={require("../assets/images/Group 8763.png")}
-              className="w-full h-[186px]"
-              resizeMode="contain"
-            />
-            <View className="w-full flex justify-between mt-4">
-              <Text className="text-center text-gray-200 text-lg mb-8 px-8">
+            {/* Title Banner */}
+            <View className="w-full mt-[-120px] mb-3">
+              <Image
+                source={require("../assets/images/Group 8763.png")}
+                className="w-full h-auto"
+                resizeMode="contain"
+              />
+            </View>
+
+            {/* Text + CTA */}
+            <View className="items-center px-8">
+              {/* <Text className="text-center text-white/80 text-lg leading-6">
                 Light up your world with songs, albums{"\n"}
                 and artists that reflect who you are.
-              </Text>
+              </Text> */}
 
-             
-                <TouchableOpacity onPress={() => router.push("/home")} className="bg-purple-600 mx-auto items-center py-4 rounded-xl w-60 h-16 shadow-md shadow-black/40">
-                  <Text className="text-center text-white font-semibold text-base">
-                    Continue with e-mail
-                  </Text>
-                </TouchableOpacity>
-              
+              <TouchableOpacity
+                onPress={() => router.push("/home")}
+                className="bg-[#7A4DF3] w-64 h-16 rounded-2xl items-center justify-center shadow-lg shadow-black/50"
+                activeOpacity={0.85}
+              >
+                <Text className="text-white text-base font-semibold tracking-wide">
+                  Continue with e-mail
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>

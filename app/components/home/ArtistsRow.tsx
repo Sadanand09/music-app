@@ -37,7 +37,7 @@ const artists: Artist[] = [
 
 export default function ArtistsRow() {
   return (
-    <View className="mt-1 mb-5">
+    <View className="mt-[-100px] mb-5">
       {/* Section Title */}
       <Text className="text-white text-xl font-bold mb-4">Popular Artists</Text>
 
