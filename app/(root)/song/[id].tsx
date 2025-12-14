@@ -5,9 +5,13 @@ import { router, useLocalSearchParams } from "expo-router";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { posters } from "@/constants/posterImages";
 import SecondHeader from "@/app/components/common/SecondHeader";
+import { songs } from "@/app/data/songs";
+
 
 export default function TrackPlayer() {
-    const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const { id } = useLocalSearchParams<{ id: string }>();
+
 
   const { title, artist, poster, duration } = useLocalSearchParams<{
     title: string;

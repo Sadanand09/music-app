@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <View className="w-full flex justify-between">
+    <View className="w-full px-5 flex my-0 py-0 justify-between">
       {/* Header */}
       <View className="flex flex-row items-center justify-between mt-6 px-2">
         {/* Text Section */}
@@ -29,14 +29,6 @@ const Header = () => {
         </View>
       </View>
 
-      {/* Banner (Edge to Edge) */}
-      <View className="w-full my-5">
-        <Image
-          source={require("../../../assets/images/Song.png")}
-          className="w-full h-auto"
-          resizeMode="cover"
-        />
-      </View>
     </View>
   );
 };
