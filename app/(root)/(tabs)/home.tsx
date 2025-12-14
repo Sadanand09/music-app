@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  ImageBackground,
-  ScrollView,
-  View,
-  StyleSheet,
-} from "react-native";
+import { ImageBackground, ScrollView, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import HomeTabs from "../../components/home/HomeTabs";
@@ -14,7 +9,6 @@ import CollectionsContent from "../../components/home/CollectionsContent";
 import Header from "@/app/components/common/Header";
 
 import { songs, categories, collections } from "../../data/homeData";
-
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState<
@@ -27,13 +21,23 @@ export default function HomeScreen() {
       className="flex-1"
       resizeMode="cover"
     >
-      <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={styles.scroll}>
-          <View className="px-3">
-            <Header />         
-            <HomeTabs activeTab={activeTab} onChange={setActiveTab} />
+      <SafeAreaView className="flex-1">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          //contentContainerStyle={styles.scroll}
+        >
+          {/* Screen padding */}
+          <View className="px-5">
+            {/* Header */}
+            <Header />
 
-            <View className="px-3">
+            {/* Tabs */}
+            <View>
+              <HomeTabs activeTab={activeTab} onChange={setActiveTab} />
+            </View>
+
+            {/* Content */}
+            <View className="mt-6">
               {activeTab === "Trending" && <TrendingContent data={songs} />}
               {activeTab === "Categories" && (
                 <CategoriesContent categories={categories} />
@@ -49,7 +53,8 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  scroll: { paddingBottom: 40 },
-});
+// const styles = StyleSheet.create({
+//   scroll: {
+//     paddingBottom: 40,
+//   },
+// });

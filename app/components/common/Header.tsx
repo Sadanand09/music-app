@@ -3,9 +3,9 @@ import React from "react";
 
 const Header = () => {
   return (
-    <View className="w-full flex justify-evenly">
+    <View className="w-full flex justify-between">
       {/* Header */}
-      <View className="flex flex-row items-center justify-between mt-6 px-5">
+      <View className="flex flex-row items-center justify-between mt-6 px-2">
         {/* Text Section */}
         <View>
           <Text className="text-3xl text-white font-extrabold">
