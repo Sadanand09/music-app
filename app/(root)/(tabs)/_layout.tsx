@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import icons from "@/constants/icons";
@@ -45,20 +45,9 @@ const TabsLayout = () => {
       />
 
       <Tabs.Screen
-        name="explore"
+        name="downloads"
         options={{
-          title: "Scan",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon={icons.scan} focused={focused} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="fileManager"
-        options={{
-          title: "File Manager",
+          title: "Downloads",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon icon={icons.filemanager} focused={focused} />

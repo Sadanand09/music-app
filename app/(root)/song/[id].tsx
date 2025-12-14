@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { router, useLocalSearchParams } from "expo-router";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { posters } from "@/constants/posterImages";
+import SecondHeader from "@/app/components/common/SecondHeader";
 
 export default function TrackPlayer() {
     const [isLiked, setIsLiked] = useState(false);
@@ -28,19 +29,8 @@ export default function TrackPlayer() {
         >
           <View className="px-5">
             {/* Top Bar */}
-            <View className="flex flex-row items-center justify-between mb-10">
-              <TouchableOpacity
-                onPress={() => router.back()}
-                className="w-12 h-12 rounded-full border border-white/40 items-center justify-center"
-              >
-                <Ionicons name="arrow-back" size={22} color="white" />
-              </TouchableOpacity>
-
-              <Text className="text-white text-lg font-bold">Music Player</Text>
-
-              <TouchableOpacity className="w-12 h-12 rounded-full border border-white/40 items-center justify-center">
-                <Feather name="more-horizontal" size={22} color="white" />
-              </TouchableOpacity>
+            <View className="flex-1 pt-4">
+              <SecondHeader title="Music Player" />
             </View>
 
             {/* Album Art */}
