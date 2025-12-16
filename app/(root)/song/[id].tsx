@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams } from "expo-router";
 import { Ionicons, Feather } from "@expo/vector-icons";
+import { Audio } from "expo-av";
 
 import { posters } from "@/constants/posterImages";
 import { songs } from "@/app/data/songs";
@@ -17,15 +18,53 @@ import SecondHeader from "@/app/components/common/SecondHeader";
 
 export default function TrackPlayer() {
   const [isLiked, setIsLiked] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  // ✅ ONLY id comes from route
+  const soundRef = useRef<Audio.Sound | null>(null);
+
+
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  // ✅ Resolve song from data
   const song = songs.find((s) => s.id === Number(id));
 
-  // Safety guard
   if (!song) return null;
+
+  useEffect(() => {
+    return () => {
+      if (soundRef.current) {
+        soundRef.current.unloadAsync();
+      }
+    };
+  }, []);
+
+ const togglePlay = async () => {
+   try {
+     if (!soundRef.current) {
+       const { sound } = await Audio.Sound.createAsync(
+         require("../../../assets/audio/demo.mp3")
+       );
+
+       soundRef.current = sound;
+       await sound.playAsync();
+       setIsPlaying(true);
+       return;
+     }
+
+     const status = await soundRef.current.getStatusAsync();
+
+     if (!status.isLoaded) return;
+
+     if (status.isPlaying) {
+       await soundRef.current.pauseAsync();
+       setIsPlaying(false);
+     } else {
+       await soundRef.current.playAsync();
+       setIsPlaying(true);
+     }
+   } catch (error) {
+     console.log("Audio toggle error:", error);
+   }
+ };
 
   return (
     <ImageBackground
@@ -83,7 +122,7 @@ export default function TrackPlayer() {
               </TouchableOpacity>
             </View>
 
-            {/* Waveform (UI only) */}
+            {/* Waveform */}
             <View className="flex flex-row items-end justify-between mt-10 h-14">
               {Array.from({ length: 28 }).map((_, i) => (
                 <View
@@ -107,8 +146,15 @@ export default function TrackPlayer() {
               <Ionicons name="shuffle" size={24} color="white" />
               <Ionicons name="play-skip-back" size={32} color="white" />
 
-              <TouchableOpacity className="w-20 h-20 rounded-full bg-white items-center justify-center">
-                <Ionicons name="pause" size={40} color="#111" />
+              <TouchableOpacity
+                onPress={togglePlay}
+                className="w-20 h-20 rounded-full bg-white items-center justify-center"
+              >
+                <Ionicons
+                  name={isPlaying ? "pause" : "play"}
+                  size={40}
+                  color="#111"
+                />
               </TouchableOpacity>
 
               <Ionicons name="play-skip-forward" size={32} color="white" />

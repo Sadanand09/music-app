@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 
 type Category = {
   id: string;
@@ -15,22 +15,11 @@ export default function CategoriesContent({
   return (
     <View>
       {categories.map((cat) => (
-        <View key={cat.id} style={styles.card}>
-          <Text style={styles.title}>{cat.name}</Text>
-          <Text style={styles.meta}>{cat.count} songs</Text>
+        <View key={cat.id} className="bg-[#222] p-[14px] rounded-xl mb-3">
+          <Text className="text-white font-semibold text-base">{cat.name}</Text>
+          <Text className="text-[#bdbdbd] mt-1">{cat.count} songs</Text>
         </View>
       ))}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "#222",
-    padding: 14,
-    borderRadius: 12,
-    marginBottom: 12,
-  },
-  title: { color: "white", fontWeight: "600", fontSize: 16 },
-  meta: { color: "#bdbdbd", marginTop: 4 },
-});

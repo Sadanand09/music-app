@@ -71,7 +71,6 @@ export default function ProfileScreen() {
   );
 }
 
-/* ---------- UI Components ---------- */
 
 function StatItem({ label, value }: { label: string; value: string }) {
   return (
